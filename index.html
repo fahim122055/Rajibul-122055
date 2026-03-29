@@ -1,0 +1,101 @@
+‎<!DOCTYPE html><html lang="bn">
+‎<head>
+‎<meta charset="UTF-8">
+‎<meta name="viewport" content="width=device-width, initial-scale=1.0">
+‎<title>MBusiness Shop</title><style>
+‎body{margin:0;font-family:Poppins, sans-serif;background:#f4f6f9;}
+‎
+‎header{background:linear-gradient(135deg,#0d6efd,#6610f2);color:white;text-align:center;padding:25px;border-radius:0 0 20px 20px;}
+‎
+‎nav{display:flex;justify-content:center;gap:20px;background:#111;padding:12px;}
+‎nav a{color:white;text-decoration:none;font-weight:600;}
+‎
+‎.section{padding:20px;margin:15px;border-radius:15px;}
+‎
+‎.hero{background:#ffffff;text-align:center;}
+‎
+‎.products{background:#e3f2fd;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;}
+‎
+‎.product{background:white;padding:15px;border-radius:12px;text-align:center;box-shadow:0 5px 10px rgba(0,0,0,0.1);}
+‎.product button{background:#0d6efd;color:white;border:none;padding:10px;border-radius:8px;cursor:pointer;}
+‎
+‎.cart{background:#fff3cd;max-width:400px;margin:auto;display:none;}
+‎
+‎footer{background:#111;color:white;text-align:center;padding:15px;margin-top:20px;}
+‎
+‎.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;padding:15px;border-radius:50%;text-decoration:none;}
+‎</style></head><body><header>
+‎<h1>MBusiness Shop</h1>
+‎<p>Best Internet Offers</p>
+‎</header><nav>
+‎<a href="#">Home</a>
+‎<a href="#products">Products</a>
+‎<a href="#cart">Cart</a>
+‎</nav><div class="section hero">
+‎<h2>স্বাগতম!</h2>
+‎<p>সেরা অফার এখনই নিন</p>
+‎</div><div class="section products" id="products"><div class="product" data-name="House Offer" data-price="1500">
+‎<h3>House Offer</h3>
+‎<p>৳1500</p>
+‎<button onclick="addToCart(this)">Add</button>
+‎</div><div class="product" data-name="Family Pack" data-price="1200">
+‎<h3>Family Pack</h3>
+‎<p>৳1200</p>
+‎<button onclick="addToCart(this)">Add</button>
+‎</div><div class="product" data-name="Gift Pack" data-price="1000">
+‎<h3>Gift Pack</h3>
+‎<p>৳1000</p>
+‎<button onclick="addToCart(this)">Add</button>
+‎</div><div class="product" data-name="Regular Pack" data-price="500">
+‎<h3>Regular Pack</h3>
+‎<p>৳500</p>
+‎<button onclick="addToCart(this)">Add</button>
+‎</div><div class="product" data-name="GP 100GB" data-price="700">
+‎<h3>GP 100GB</h3>
+‎<p>৳700</p>
+‎<button onclick="addToCart(this)">Add</button>
+‎</div><div class="product" data-name="BL 150GB" data-price="840">
+‎<h3>BL 150GB</h3>
+‎<p>৳840</p>
+‎<button onclick="addToCart(this)">Add</button>
+‎</div></div><div class="section cart" id="cart">
+‎<h3>Cart</h3>
+‎<div id="cartItems"></div>
+‎<p>Total: ৳<span id="total">0</span></p>
+‎<button onclick="checkout()">Order</button>
+‎</div><a class="whatsapp" href="#">💬</a>
+‎
+‎<footer>
+‎<p>© 2026 MBusiness</p>
+‎</footer><script>
+‎let cart=[];
+‎
+‎function addToCart(btn){
+‎let p=btn.parentElement;
+‎let name=p.dataset.name;
+‎let price=parseInt(p.dataset.price);
+‎
+‎let item=cart.find(i=>i.name===name);
+‎if(item){item.qty++}else{cart.push({name,price,qty:1})}
+‎updateCart();
+‎}
+‎
+‎function updateCart(){
+‎let div=document.getElementById('cartItems');
+‎div.innerHTML='';
+‎let total=0;
+‎cart.forEach(i=>{
+‎let t=i.price*i.qty;
+‎total+=t;
+‎div.innerHTML+=`<p>${i.name} (${i.qty}) - ৳${t}</p>`;
+‎});
+‎
+‎document.getElementById('total').innerText=total;
+‎document.getElementById('cart').style.display=cart.length?'block':'none';
+‎}
+‎
+‎function checkout(){
+‎alert('Order Placed via WhatsApp');
+‎}
+‎</script></body>
+‎</html>
